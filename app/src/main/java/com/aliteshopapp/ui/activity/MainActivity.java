@@ -112,6 +112,8 @@ public class MainActivity extends BaseActivity<LoginPresenterImpl> implements Lo
     @Override
     public void setState(int state) {
 
+
+
     }
 
     @Override
