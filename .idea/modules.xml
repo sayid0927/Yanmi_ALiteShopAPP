@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ALiteShopAPP.iml" filepath="$PROJECT_DIR$/ALiteShopAPP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Yanmi_ALiteShopAPP.iml" filepath="$PROJECT_DIR$/Yanmi_ALiteShopAPP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

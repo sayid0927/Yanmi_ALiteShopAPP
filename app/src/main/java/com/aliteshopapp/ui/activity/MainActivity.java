@@ -71,11 +71,6 @@ public class MainActivity extends BaseActivity<LoginPresenterImpl> implements Lo
         tvTitle.setVisibility(View.INVISIBLE);
         llExit.setVisibility(View.INVISIBLE);
         llRight.setVisibility(View.INVISIBLE);
-
-
-
-
-
     }
 
     @Override
