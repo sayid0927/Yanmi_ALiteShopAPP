@@ -3,6 +3,7 @@
     android:id="@+id/connection_title"
     android:layout_width="match_parent"
     android:layout_height="@dimen/connection_title_height"
+
     android:background="@color/white">
 
 

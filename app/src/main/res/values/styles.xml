@@ -6,14 +6,34 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:textCursorDrawable">@null</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowTitleSize">30dp</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:textCursorDrawable">@null</item>-->
+        <!--<item name="android:windowActionBar">false</item>-->
+        <!--<item name="android:windowTitleSize">30dp</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
     </style>
 
 
+
+
+    <!-- Base application theme. -->
+    <style name="MainActivityAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/tv_new_user_hint_back</item>
+        <item name="colorPrimaryDark">@color/tv_new_user_hint_back</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:textCursorDrawable">@null</item>-->
+        <!--<item name="android:windowActionBar">false</item>-->
+        <!--<item name="android:windowTitleSize">30dp</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+    </style>
 
     <declare-styleable name="SwipeBackLayout">
         <attr name="edge_size" format="dimension" />
@@ -36,4 +56,14 @@
         <item name="shadow_right">@drawable/shadow_right</item>
         <item name="shadow_bottom">@drawable/shadow_bottom</item>
     </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@color/white</item> <!--  敲定颜色-->
+        <item name="android:textSize">18sp</item> <!--  搞掂字体大小-->
+
+    </style>
+
+
+
+
 </resources>

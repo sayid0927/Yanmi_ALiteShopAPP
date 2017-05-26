@@ -50,7 +50,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity"
+            android:theme="@style/MainActivityAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

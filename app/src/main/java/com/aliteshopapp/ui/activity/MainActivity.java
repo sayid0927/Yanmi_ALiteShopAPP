@@ -3,14 +3,15 @@ package com.aliteshopapp.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.DisplayMetrics;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,14 +34,6 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity<LoginPresenterImpl> implements LoginPresenter.View {
 
 
-    @BindView(R.id.llExit)
-    LinearLayout llExit;
-    @BindView(R.id.tvTitle)
-    TextView tvTitle;
-    @BindView(R.id.llRight)
-    LinearLayout llRight;
-    @BindView(R.id.connection_title)
-    RelativeLayout connectionTitle;
     @BindView(R.id.edit_name)
     EditText editName;
     @BindView(R.id.edit_password)
@@ -55,9 +48,27 @@ public class MainActivity extends BaseActivity<LoginPresenterImpl> implements Lo
     Button btnNewUser;
     @BindView(R.id.btn_login)
     Button btnLogin;
+    @BindView(R.id.toolbar_base_activity)
+    Toolbar toolbarBaseActivity;
+    @BindView(R.id.iv_logo)
+    ImageView ivLogo;
+    @BindView(R.id.name_icon)
+    ImageView nameIcon;
+    @BindView(R.id.name_layout)
+    RelativeLayout nameLayout;
+    @BindView(R.id.password_icon)
+    ImageView passwordIcon;
+    @BindView(R.id.password_layout)
+    RelativeLayout passwordLayout;
+    @BindView(R.id.iv_wechat_login)
+    ImageView ivWechatLogin;
+    @BindView(R.id.iv_qq_login)
+    ImageView ivQqLogin;
+    @BindView(R.id.tv_toolbar)
+    TextView tvToolbar;
+
     private long mExitTime = 0;
     private InputMethodManager manager;
-
 
 
     @Override
@@ -66,11 +77,12 @@ public class MainActivity extends BaseActivity<LoginPresenterImpl> implements Lo
     }
 
     @Override
-    public void setStatusBar() {
-        connectionTitle.setBackgroundColor(this.getResources().getColor(R.color.white));
-        tvTitle.setVisibility(View.INVISIBLE);
-        llExit.setVisibility(View.INVISIBLE);
-        llRight.setVisibility(View.INVISIBLE);
+    public void setToolBar() {
+
+        setSupportActionBar(toolbarBaseActivity);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        tvToolbar.setText("登录");
+
     }
 
     @Override
@@ -78,8 +90,8 @@ public class MainActivity extends BaseActivity<LoginPresenterImpl> implements Lo
 
         ButterKnife.bind(this);
         getSwipeBackLayout().setEnableGesture(false);
-        setDecorView(R.id.layout_login);
-        manager =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
     }
 
     @Override
@@ -113,10 +125,6 @@ public class MainActivity extends BaseActivity<LoginPresenterImpl> implements Lo
     public void setState(int state) {
 
 
-
-
-
-
     }
 
     @Override
@@ -130,22 +138,17 @@ public class MainActivity extends BaseActivity<LoginPresenterImpl> implements Lo
         ToastUtils.showShortToast(errorMsg);
     }
 
-    @OnClick({R.id.btn_forget_pwd, R.id.btn_register, R.id.btn_login,R.id.edit_name, R.id.edit_password, R.id.llExit})
+    @OnClick({R.id.btn_forget_pwd, R.id.btn_register, R.id.btn_login, R.id.edit_name, R.id.edit_password})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_forget_pwd:
                 break;
-
             case R.id.btn_register:
-
-               startActivityIn(new Intent(MainActivity.this,RegisterActivity.class),this);
-
-
+                startActivityIn(new Intent(MainActivity.this, RegisterActivity.class), this);
                 break;
             case R.id.btn_login:
                 break;
             case R.id.edit_name:
-
                 break;
             case R.id.edit_password:
                 break;
@@ -154,45 +157,18 @@ public class MainActivity extends BaseActivity<LoginPresenterImpl> implements Lo
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN){
-            if(getCurrentFocus()!=null && getCurrentFocus().getWindowToken()!=null){
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
                 manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
         return super.onTouchEvent(event);
     }
 
-
-//    protected  int getNavigationBarHeight(){
-//        boolean hasMenuKey= ViewConfiguration.get(this).hasPermanentMenuKey();
-//        boolean hasBaskKey= KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
-//        if(!hasMenuKey && !hasBaskKey){
-//            Resources resource = getResources();
-//            int resourceId=resource.getIdentifier("navigation_bar_height","dimen","android");
-//            int height =resource.getDimensionPixelSize(resourceId);
-//            return  height;
-//
-//        }else {
-//            return  0;
-//        }
-//    }
-
-
-    /**
-     * 获取底部虚拟键盘的高度
-     *
-     * @param context
-     * @return
-     */
-    private static int getScreenHeight(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics out = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(out);
-        int  ff=out.heightPixels;
-        return out.heightPixels;
-    }
-
-    protected  void   setDecorView(int view ){
-        getWindow().getDecorView().findViewById(view).setPadding(0,0,0,getScreenHeight(this));
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

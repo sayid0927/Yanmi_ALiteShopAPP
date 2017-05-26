@@ -3,15 +3,10 @@ package com.aliteshopapp.base.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.aliteshopapp.R;
@@ -48,7 +43,7 @@ public abstract class BaseActivity <P extends BasePresenter> extends SwipeBackAc
     @LayoutRes
     public abstract int getLayoutId();
 
-    public abstract void setStatusBar();
+    public abstract void setToolBar();
 
     public abstract void initView();
 
@@ -68,13 +63,12 @@ public abstract class BaseActivity <P extends BasePresenter> extends SwipeBackAc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        if (Build.VERSION.SDK_INT >= 19) {
-            //透明状态栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
-
+//        if (Build.VERSION.SDK_INT >= 19) {
+//            //透明状态栏
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            //透明导航栏
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        }
 
         super.onCreate(savedInstanceState);
         initSwipeBackLayout();
@@ -85,7 +79,7 @@ public abstract class BaseActivity <P extends BasePresenter> extends SwipeBackAc
         initInject();
         mPresenter.attachView(this);
         initView();
-        setStatusBar();
+        setToolBar();
     }
 
     @Override
@@ -118,20 +112,20 @@ public abstract class BaseActivity <P extends BasePresenter> extends SwipeBackAc
     }
 
 
-//    public  void  initBar(){
-//
-//        rl_ConnectionTitle=findViewById(R.id.connection_title);
-//        if (rl_ConnectionTitle != null && rl_ConnectionTitle instanceof View) {
-//             iv_Back= (ImageView) rl_ConnectionTitle.findViewById(R.id.llExit);
-//            iv_Back.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    finishActivity();
-//                }
-//            });
-//        }
+//    protected void setToolBar(Toolbar toolbar) {
+//        // toolbar.setTitle(title);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+////        toolbar.setTitleTextColor(Color.WHITE);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//显示toolbar的返回按钮
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onBackPressed();
+//            }
+//        });
 //    }
-
 
 
     /**
